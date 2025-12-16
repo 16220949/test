@@ -11,7 +11,7 @@
 
 <script>
     const supabaseUrl = 'https://bwbohtprwnegbunrxnyj.supabase.co';
-    const supabaseKey = '你的anon_key'; // 替换为你的key
+    const supabaseKey = 'sb_secret_eX7QAnN2MDxWZ6OHD8lRrQ_9FODCq83'; // 替换为你的key
 
     const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
@@ -28,7 +28,7 @@
                 email: email,
                 password: 'testpassword123',
                 options: {
-                    emailRedirectTo: 'https://16220949.github.io/email-confirm.html'
+                    emailRedirectTo: 'https://16220949.github.io/email-confirm'
                 }
             });
 
