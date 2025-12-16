@@ -1,47 +1,76 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>测试邮件发送</title>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <meta charset="UTF-8" />
+  <title>Confirm your email</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial;
+      line-height: 1.6;
+      color: #333;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .container {
+      background: #f9fafb;
+      border-radius: 12px;
+      padding: 30px;
+      border: 1px solid #e5e7eb;
+    }
+    .button {
+      display: inline-block;
+      padding: 14px 28px;
+      background: linear-gradient(135deg, #F6EEE2 0%, #F09D00 100%);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      margin: 20px 0;
+    }
+    .code {
+      background: #f3f4f6;
+      padding: 12px;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 13px;
+      word-break: break-all;
+      margin: 15px 0;
+    }
+    .footer {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid #e5e7eb;
+      font-size: 12px;
+      color: #6b7280;
+    }
+  </style>
 </head>
 <body>
-<h2>测试邮件发送</h2>
-<input type="email" id="email" placeholder="输入测试邮箱">
-<button onclick="testSignup()">发送测试邮件</button>
-
-<script>
-    const supabaseUrl = 'https://bwbohtprwnegbunrxnyj.supabase.co';
-    const supabaseKey = 'sb_secret_eX7QAnN2MDxWZ6OHD8lRrQ_9FODCq83'; // 替换为你的key
-
-    const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
-
-    async function testSignup() {
-        const email = document.getElementById('email').value;
-
-        if (!email) {
-            alert('请输入邮箱');
-            return;
-        }
-
-        try {
-            const { data, error } = await supabase.auth.signUp({
-                email: email,
-                password: 'testpassword123',
-                options: {
-                    emailRedirectTo: 'https://16220949.github.io/email-confirm'
-                }
-            });
-
-            if (error) {
-                alert('发送失败: ' + error.message);
-            } else {
-                alert('邮件已发送！请检查邮箱（包括垃圾邮件箱）');
-                console.log('响应数据:', data);
-            }
-        } catch (err) {
-            alert('错误: ' + err.message);
-        }
-    }
-</script>
+  <div class="container">
+    <h2 style="color: #1f2937; margin-top: 0;">欢迎注册 MoodBox </h2>
+    
+    <p>您正在使用此邮箱注册 <strong>MoodBox</strong> 账号。</p>
+    
+    <p>请点击下方按钮完成邮箱验证：</p>
+    
+    <p style="text-align: center;">
+      <a href="{{ .ConfirmationURL }}" class="button">
+        确认邮箱地址
+      </a>
+    </p>
+    
+    <p>如果按钮无法点击，请复制以下链接到浏览器打开：</p>
+    
+    <div class="code">
+      {{ .ConfirmationURL }}
+    </div>
+    
+    <div class="footer">
+      <p>如果您没有注册 MoodBox，请忽略此邮件。</p>
+      <p>此验证链接将在 24 小时后失效。</p>
+      <p>MoodBox 团队</p>
+    </div>
+  </div>
 </body>
 </html>
